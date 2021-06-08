@@ -81,7 +81,7 @@
 <link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="impression," />
+  <meta name="keywords" content="Fiddler,HTTP/HTTPS,抓包工具," />
 
 
 
@@ -99,17 +99,20 @@
 
 
 
-<meta name="description" content="2017年6月8日，它诞生啦～ 此刻正在上班，短小一篇，仅此纪念。">
-<meta name="keywords" content="impression">
+<meta name="description" content="前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！">
+<meta name="keywords" content="Fiddler,HTTP&#x2F;HTTPS,抓包工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【随想】博客诞生">
-<meta property="og:url" content="https://zhouhuiqin.github.io/2017/06/08/【随想】博客诞生/index.html">
+<meta property="og:title" content="FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse">
+<meta property="og:url" content="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/index.html">
 <meta property="og:site_name" content="Ms Zhou">
-<meta property="og:description" content="2017年6月8日，它诞生啦～ 此刻正在上班，短小一篇，仅此纪念。">
-<meta property="og:updated_time" content="2021-05-18T08:06:00.937Z">
+<meta property="og:description" content="前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！">
+<meta property="og:image" content="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用%20-%20OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%B8%80.png">
+<meta property="og:image" content="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用%20-%20OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%BA%8C.png">
+<meta property="og:updated_time" content="2021-06-08T12:24:47.318Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【随想】博客诞生">
-<meta name="twitter:description" content="2017年6月8日，它诞生啦～ 此刻正在上班，短小一篇，仅此纪念。">
+<meta name="twitter:title" content="FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse">
+<meta name="twitter:description" content="前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！">
+<meta name="twitter:image" content="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用%20-%20OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%B8%80.png">
 
 
 
@@ -137,13 +140,13 @@
 
 
 
-  <link rel="canonical" href="https://zhouhuiqin.github.io/2017/06/08/【随想】博客诞生/"/>
+  <link rel="canonical" href="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/"/>
 
 
 
 
 
-  <title>【随想】博客诞生 | Ms Zhou</title>
+  <title>FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse | Ms Zhou</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -317,7 +320,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="https://zhouhuiqin.github.io/2017/06/08/【随想】博客诞生/">
+    <link itemprop="mainEntityOfPage" href="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ms Zhou">
@@ -334,7 +337,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【随想】博客诞生</h1>
+          <h1 class="post-title" itemprop="name headline">FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse</h1>
         
 
         <div class="post-meta">
@@ -346,8 +349,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-08T17:42:44+08:00">
-                2017-06-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2021-06-03T20:38:02+08:00">
+                2021-06-03
               </time>
             
 
@@ -369,8 +372,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/随想/" itemprop="url" rel="index">
-                    <span itemprop="name">随想</span>
+                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
                   </a>
                 </span>
 
@@ -386,7 +389,7 @@
 
           
           
-             <span id="/2017/06/08/【随想】博客诞生/" class="leancloud_visitors" data-flag-title="【随想】博客诞生">
+             <span id="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/" class="leancloud_visitors" data-flag-title="FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -414,11 +417,77 @@
       
 
       
-        <p>2017年6月8日，它诞生啦～<br>
-此刻正在上班，短小一篇，仅此纪念。</p>
+        <blockquote>
+<p>前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！</p>
+</blockquote>
 <a id="more"></a>
-<p>2021年5月17日，它重生啦~<br>
-需要再次维护起来，督促自己好好更新文章！</p>
+<h4 id="一-入口"><a class="markdownIt-Anchor" href="#一-入口"></a> 一、入口</h4>
+<ol>
+<li>
+<p>右侧顶部工具栏的FiddlerScript<br>
+<img src="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%B8%80.png" alt="右侧顶部工具栏的FiddlerScript"></p>
+</li>
+<li>
+<p>左侧顶部操作栏的Rules→Customize Rules…<br>
+<img src="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%BA%8C.png" alt="左侧顶部操作栏的Rules→Customize Rules..."><br>
+<i>当然，如上图，快捷键 Ctrl+R 也能够进入</i></p>
+</li>
+</ol>
+<h4 id="二-使用举例"><a class="markdownIt-Anchor" href="#二-使用举例"></a> 二、使用举例</h4>
+<h5 id="onbeforerequest"><a class="markdownIt-Anchor" href="#onbeforerequest"></a> OnBeforeRequest</h5>
+<p><i>          在每次请求之前调用</i></p>
+<pre class="highlight"><code class="">if(oSession.fullUrl.Contains(&quot;目标URL&quot;)){
+	var mylogin='{更改后的请求body}';
+	var requestJson=Fiddler.WebFormats.JSON.JsonDecode(mylogin);
+	var reJsonDes=Fiddler.WebFormats.JSON.JsonEncode(requestJson.JSONObject);
+	oSession.utilSetRequestBody(reJsonDes);
+	}
+</code></pre>
+<h5 id="onbeforeresponse"><a class="markdownIt-Anchor" href="#onbeforeresponse"></a> OnBeforeResponse</h5>
+<p><i>          在每次请求之后调用</i></p>
+<pre><code>if(oSession.fullUrl.Contains(&quot;目标URL&quot;)){
+	var strBody=oSession.GetResponseBodyAsString();
+	strBody=strBody.replace(&quot;期望数据&quot;);
+	oSession.utilSetResponseBody(strBody);
+	}  
+</code></pre>
+<h4 id="三-使用框架如下"><a class="markdownIt-Anchor" href="#三-使用框架如下"></a> 三、使用框架如下：</h4>
+<pre><code>if（满足某条件）{    
+	获取待修改数据  
+	替换该数据 
+	重新写回请求  
+	--如有必要，可以加些确认修改成功的方法：日志或窗口  
+}
+</code></pre>
+<h6 id="1-满足某条件"><a class="markdownIt-Anchor" href="#1-满足某条件"></a> 1. 满足某条件</h6>
+<p>oSession.uriContains（‘URL’）　　uri包含目标（模糊）<br>
+oSession.fullUrl.Contains(‘URL’)　　uri包含目标（模糊）<br>
+oSession.PathAndQuery == ‘URL’　　uri包含目标<br>
+oSession.HostnameIs(‘域名’) 　　homename为某域名<br>
+oSession.hostname == ‘域名’　　homename为某域名<br>
+oSession.host == ‘域名:端口’　　host为某域名与端口<br>
+oSession.responseCode == 304　　返回状态码为304</p>
+<h6 id="2-获取待修改数据"><a class="markdownIt-Anchor" href="#2-获取待修改数据"></a> 2. 获取待修改数据</h6>
+<p>var Request=oSession.GetRequestBodyAsString()　　获取Request 中的body字符串<br>
+var Response=oSession.GetResponseBodyAsString()　　获取Response 中的body字符串<br>
+<font color="grey" size="0.875em">如果想要替换body里的某个变量，则可以如下：</font><br>
+var requestJson=Fiddler.WebFormats.JSON.JsonDecode(Request)　　  转换为可编辑的JSONObject变量<br>
+var Request=Fiddler.WebFormats.JSON.JsonDecode(requestJson)　　  重新设置Request Body</p>
+<h6 id="3-替换该数据"><a class="markdownIt-Anchor" href="#3-替换该数据"></a> 3. 替换该数据</h6>
+<p>Request=Request.replace(“1111”,“2222”)　　用正则表达式或者replace方法去修改string，将1111改为2222<br>
+Response=Response.replace(“2222”)　　用正则表达式或者replace方法去修改string，将body改为2222<br>
+<font color="grey" size="0.875em">承接第2步：</font><br>
+requestJson.JSONObject[‘key’] = “true”　　将key对应的value改为true</p>
+<h6 id="4-重新写回请求"><a class="markdownIt-Anchor" href="#4-重新写回请求"></a> 4. 重新写回请求</h6>
+<p>oSession.utilSetRequestBody(Request)　　将修改后的body，重新写回Request中<br>
+oSession.utilSetResponseBody(Response)　　将修改后的body，重新写回Response中</p>
+<h6 id="5-检查"><a class="markdownIt-Anchor" href="#5-检查"></a> 5. 检查</h6>
+<p>可分别放置在第2步后和第三步后，对比修改效果<br>
+FiddlerObject.alert(Request)　　弹个对话框检查下修改后的body</p>
+<p><i>也可以省略第2/3/4步，直接替换并写入 <code>oSession.utilReplaceInRequest(&quot;1111&quot;, &quot;2222&quot;)</code></i></p>
+<h4 id="四-帮助文档"><a class="markdownIt-Anchor" href="#四-帮助文档"></a> 四、帮助文档</h4>
+<p><a href="https://blog.csdn.net/qq_26877377/article/details/86715192" target="_blank">参考文档</a><br>
+<a href="http://www.fiddlerbook.com/Fiddler/dev/ScriptSamples.asp" target="_blank">官方文档</a></p>
 
       
     </div>
@@ -460,7 +529,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/impression/" rel="tag"># impression</a>
+            <a href="/tags/Fiddler/" rel="tag"># Fiddler</a>
+          
+            <a href="/tags/HTTP-HTTPS/" rel="tag"># HTTP/HTTPS</a>
+          
+            <a href="/tags/抓包工具/" rel="tag"># 抓包工具</a>
           
         </div>
       
@@ -473,15 +546,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2021/05/25/计算机网络基础知识（2）- 物理层/" rel="next" title="计算机网络基础知识（2）- 物理层">
+                <i class="fa fa-chevron-left"></i> 计算机网络基础知识（2）- 物理层
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2021/05/17/【面筋】BIGO测试工程师社招面试/" rel="prev" title="【面筋】BIGO测试工程师社招面试">
-                【面筋】BIGO测试工程师社招面试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -530,8 +603,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.png"
@@ -546,7 +628,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -568,7 +650,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -600,6 +682,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-入口"><span class="nav-text"> 一、入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-使用举例"><span class="nav-text"> 二、使用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onbeforerequest"><span class="nav-text"> OnBeforeRequest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onbeforeresponse"><span class="nav-text"> OnBeforeResponse</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-使用框架如下"><span class="nav-text"> 三、使用框架如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-满足某条件"><span class="nav-text"> 1. 满足某条件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-获取待修改数据"><span class="nav-text"> 2. 获取待修改数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-替换该数据"><span class="nav-text"> 3. 替换该数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-重新写回请求"><span class="nav-text"> 4. 重新写回请求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-检查"><span class="nav-text"> 5. 检查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-帮助文档"><span class="nav-text"> 四、帮助文档</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
