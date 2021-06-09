@@ -108,7 +108,7 @@
 <meta property="og:description" content="前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！">
 <meta property="og:image" content="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用%20-%20OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%B8%80.png">
 <meta property="og:image" content="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript应用%20-%20OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%BA%8C.png">
-<meta property="og:updated_time" content="2021-06-08T12:24:47.318Z">
+<meta property="og:updated_time" content="2021-06-08T12:39:48.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse">
 <meta name="twitter:description" content="前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！">
@@ -459,7 +459,7 @@
 	--如有必要，可以加些确认修改成功的方法：日志或窗口  
 }
 </code></pre>
-<h6 id="1-满足某条件"><a class="markdownIt-Anchor" href="#1-满足某条件"></a> 1. 满足某条件</h6>
+<h5 id="1-满足某条件"><a class="markdownIt-Anchor" href="#1-满足某条件"></a> 1. 满足某条件</h5>
 <p>oSession.uriContains（‘URL’）　　uri包含目标（模糊）<br>
 oSession.fullUrl.Contains(‘URL’)　　uri包含目标（模糊）<br>
 oSession.PathAndQuery == ‘URL’　　uri包含目标<br>
@@ -467,21 +467,21 @@ oSession.HostnameIs(‘域名’) 　　homename为某域名<br>
 oSession.hostname == ‘域名’　　homename为某域名<br>
 oSession.host == ‘域名:端口’　　host为某域名与端口<br>
 oSession.responseCode == 304　　返回状态码为304</p>
-<h6 id="2-获取待修改数据"><a class="markdownIt-Anchor" href="#2-获取待修改数据"></a> 2. 获取待修改数据</h6>
+<h5 id="2-获取待修改数据"><a class="markdownIt-Anchor" href="#2-获取待修改数据"></a> 2. 获取待修改数据</h5>
 <p>var Request=oSession.GetRequestBodyAsString()　　获取Request 中的body字符串<br>
 var Response=oSession.GetResponseBodyAsString()　　获取Response 中的body字符串<br>
 <font color="grey" size="0.875em">如果想要替换body里的某个变量，则可以如下：</font><br>
 var requestJson=Fiddler.WebFormats.JSON.JsonDecode(Request)　　  转换为可编辑的JSONObject变量<br>
 var Request=Fiddler.WebFormats.JSON.JsonDecode(requestJson)　　  重新设置Request Body</p>
-<h6 id="3-替换该数据"><a class="markdownIt-Anchor" href="#3-替换该数据"></a> 3. 替换该数据</h6>
+<h5 id="3-替换该数据"><a class="markdownIt-Anchor" href="#3-替换该数据"></a> 3. 替换该数据</h5>
 <p>Request=Request.replace(“1111”,“2222”)　　用正则表达式或者replace方法去修改string，将1111改为2222<br>
 Response=Response.replace(“2222”)　　用正则表达式或者replace方法去修改string，将body改为2222<br>
 <font color="grey" size="0.875em">承接第2步：</font><br>
 requestJson.JSONObject[‘key’] = “true”　　将key对应的value改为true</p>
-<h6 id="4-重新写回请求"><a class="markdownIt-Anchor" href="#4-重新写回请求"></a> 4. 重新写回请求</h6>
+<h5 id="4-重新写回请求"><a class="markdownIt-Anchor" href="#4-重新写回请求"></a> 4. 重新写回请求</h5>
 <p>oSession.utilSetRequestBody(Request)　　将修改后的body，重新写回Request中<br>
 oSession.utilSetResponseBody(Response)　　将修改后的body，重新写回Response中</p>
-<h6 id="5-检查"><a class="markdownIt-Anchor" href="#5-检查"></a> 5. 检查</h6>
+<h5 id="5-检查"><a class="markdownIt-Anchor" href="#5-检查"></a> 5. 检查</h5>
 <p>可分别放置在第2步后和第三步后，对比修改效果<br>
 FiddlerObject.alert(Request)　　弹个对话框检查下修改后的body</p>
 <p><i>也可以省略第2/3/4步，直接替换并写入 <code>oSession.utilReplaceInRequest(&quot;1111&quot;, &quot;2222&quot;)</code></i></p>
@@ -692,7 +692,7 @@ FiddlerObject.alert(Request)　　弹个对话框检查下修改后的body</p>
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-入口"><span class="nav-text"> 一、入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-使用举例"><span class="nav-text"> 二、使用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onbeforerequest"><span class="nav-text"> OnBeforeRequest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onbeforeresponse"><span class="nav-text"> OnBeforeResponse</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-使用框架如下"><span class="nav-text"> 三、使用框架如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#1-满足某条件"><span class="nav-text"> 1. 满足某条件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#2-获取待修改数据"><span class="nav-text"> 2. 获取待修改数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#3-替换该数据"><span class="nav-text"> 3. 替换该数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#4-重新写回请求"><span class="nav-text"> 4. 重新写回请求</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#5-检查"><span class="nav-text"> 5. 检查</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-帮助文档"><span class="nav-text"> 四、帮助文档</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#一-入口"><span class="nav-text"> 一、入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二-使用举例"><span class="nav-text"> 二、使用举例</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#onbeforerequest"><span class="nav-text"> OnBeforeRequest</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#onbeforeresponse"><span class="nav-text"> OnBeforeResponse</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#三-使用框架如下"><span class="nav-text"> 三、使用框架如下：</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-满足某条件"><span class="nav-text"> 1. 满足某条件</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-获取待修改数据"><span class="nav-text"> 2. 获取待修改数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-替换该数据"><span class="nav-text"> 3. 替换该数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-重新写回请求"><span class="nav-text"> 4. 重新写回请求</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-检查"><span class="nav-text"> 5. 检查</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#四-帮助文档"><span class="nav-text"> 四、帮助文档</span></a></li></ol></div>
             
 
           </div>
