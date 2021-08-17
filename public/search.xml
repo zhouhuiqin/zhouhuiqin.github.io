@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>GitHub Hexo - hexo指令</title>
+      <link href="2021/08/16/GitHub%20Hexo%20-%20hexo%E6%8C%87%E4%BB%A4/"/>
+      <url>2021/08/16/GitHub%20Hexo%20-%20hexo%E6%8C%87%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：记录下常用的hexo指令和踩过的坑~</p><a id="more"></a></blockquote><h4 id="hexo指令"><a class="markdownIt-Anchor" href="#hexo指令"></a> Hexo指令</h4><h5 id="1-新建一篇文章"><a class="markdownIt-Anchor" href="#1-新建一篇文章"></a> 1、新建一篇文章</h5><ul><li>方法</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> [layout] &lt;title&gt;</div></pre></td></tr></table></figure><ul><li>栗子：新建本篇文章（标题包含空格时，需要使用引号括起来）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> <span class="string">"GitHub Hexo - hexo指令"</span></div></pre></td></tr></table></figure><h5 id="2-清除缓存文件"><a class="markdownIt-Anchor" href="#2-清除缓存文件"></a> 2、清除缓存文件</h5><ul><li>方法与栗子</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure><h5 id="3-生成静态文件"><a class="markdownIt-Anchor" href="#3-生成静态文件"></a> 3、生成静态文件</h5><ul><li>方法与栗子①（g，generate的缩写）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure><ul><li>栗子②：文件生成后立即部署网站</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g -d</div></pre></td></tr></table></figure><ul><li>栗子③：文件生成时日志打印（此时，在博客根目录下可见debug.log文件）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g --debug</div></pre></td></tr></table></figure><h5 id="4-启动本地服务预览"><a class="markdownIt-Anchor" href="#4-启动本地服务预览"></a> 4、启动本地服务（预览）</h5><ul><li>方法与栗子（默认情况下，访问网址为： <code>http://localhost:4000/</code>）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure><h5 id="5-部署网站"><a class="markdownIt-Anchor" href="#5-部署网站"></a> 5、部署网站</h5><ul><li>方法与栗子</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure><p><i>指导文档：<a href="https://hexo.io/zh-cn/docs/commands" target="_blank">Hexo官方指令</a>    </i></p><h4 id="坑坑坑坑"><a class="markdownIt-Anchor" href="#坑坑坑坑"></a> 坑坑坑坑</h4><h5 id="坑一hexo-g生成的静态文件为0kb"><a class="markdownIt-Anchor" href="#坑一hexo-g生成的静态文件为0kb"></a> 坑一：hexo g生成的静态文件为0kb</h5><h6 id="现象"><a class="markdownIt-Anchor" href="#现象"></a> 现象</h6><p>hexo g --debug，可见错误如下：</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(node:3908) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency</div><div class="line">(Use `node --trace-warnings ...` to show where the warning was created)</div><div class="line">(node:3908) Warning: Accessing non-existent property 'column' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'column' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency</div></pre></td></tr></table></figure><h6 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h6><p>node版本过高，与旧hexo不兼容；且非稳定版本</p><p>原使用node版本：14.17.3</p><p>需降低node版本：12.22.5</p><p>👉<a href="https://nodejs.org/zh-cn/about/releases/" target="_blank">node稳定版</a></p><h6 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决</h6><p>使用稳定版本的node，如果不想卸载原版本的话（会有其他应用依赖高版本node的情况），可以安装nvm，实现多版本的node切换。</p><p>指导文档：<a href="https://blog.csdn.net/gitchatxiaomi/article/details/108965496" target="_blank">解决项目node版本不支持，windows多版本的node切换</a></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nvm ls               <span class="comment">// 查看已安装node版本</span></div><div class="line">nvm install vXX      <span class="comment">// 安装对应XXX版本的node</span></div><div class="line">nvm uninstall vXX    <span class="comment">// 卸载对应XXX版本的node</span></div><div class="line">nvm use xxx          <span class="comment">// 选择使用XXX版本</span></div></pre></td></tr></table></figure><h5 id="坑二修改文件夹名称小写大写提交后名称依旧未变"><a class="markdownIt-Anchor" href="#坑二修改文件夹名称小写大写提交后名称依旧未变"></a> 坑二：修改文件夹名称（小写↔大写），提交后名称依旧未变</h5><h6 id="原因-2"><a class="markdownIt-Anchor" href="#原因-2"></a> 原因</h6><p>git 命令默认的配置中忽略了文件名的大小写</p><h6 id="解决-2"><a class="markdownIt-Anchor" href="#解决-2"></a> 解决</h6><p>修改git的配置文件，让git执行时不要忽略大小写的修改。</p><ol><li>步骤1：进入到博客根目录</li><li>步骤2：找到.deploy_git文件夹（隐藏文件夹，度娘查如何显示文件）</li><li>步骤3：找到.git文件夹</li><li>步骤4：修改config文件里的 ignorecase = true 为 ignorecase = false，保存文件</li><li>步骤5：删除.deploy_git文件夹内的所有文件，并push到 Github 仓库（确保你的远程仓库内没有任何文件）</li><li>步骤6：执行hexo指令：hexo clean、hexo g -d</li></ol><p>指导文档：<a href="https://www.dazhuanlan.com/coolspeed/topics/1376322" target="_blank">Hexo部署到Github后文件夹名大小写引起的问题</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>趣丸测试工程师社招面试</title>
       <link href="2021/07/20/%E8%B6%A3%E4%B8%B8%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/"/>
       <url>2021/07/20/%E8%B6%A3%E4%B8%B8%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/</url>
@@ -236,9 +263,9 @@
             
             <tag> Django </tag>
             
-            <tag> JavaScript </tag>
-            
             <tag> Ajax </tag>
+            
+            <tag> JavaScript </tag>
             
             <tag> jQuery </tag>
             

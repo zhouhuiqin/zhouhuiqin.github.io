@@ -6,7 +6,7 @@
   <link href="https://zhouhuiqin.github.io/atom.xml" rel="self"/>
   
   <link href="https://zhouhuiqin.github.io/"/>
-  <updated>2021-08-16T11:06:29.744Z</updated>
+  <updated>2021-08-17T01:37:31.518Z</updated>
   <id>https://zhouhuiqin.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>GitHub Hexo - hexo指令</title>
+    <link href="https://zhouhuiqin.github.io/2021/08/16/GitHub%20Hexo%20-%20hexo%E6%8C%87%E4%BB%A4/"/>
+    <id>https://zhouhuiqin.github.io/2021/08/16/GitHub%20Hexo%20-%20hexo%E6%8C%87%E4%BB%A4/</id>
+    <published>2021-08-16T12:25:19.000Z</published>
+    <updated>2021-08-17T01:37:31.518Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>前言：记录下常用的hexo指令和踩过的坑~</p><a id="more"></a></blockquote><h4 id="hexo指令"><a class="markdownIt-Anchor" href="#hexo指令"></a> Hexo指令</h4><h5 id="1-新建一篇文章"><a class="markdownIt-Anchor" href="#1-新建一篇文章"></a> 1、新建一篇文章</h5><ul><li>方法</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> [layout] &lt;title&gt;</div></pre></td></tr></table></figure><ul><li>栗子：新建本篇文章（标题包含空格时，需要使用引号括起来）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> <span class="string">"GitHub Hexo - hexo指令"</span></div></pre></td></tr></table></figure><h5 id="2-清除缓存文件"><a class="markdownIt-Anchor" href="#2-清除缓存文件"></a> 2、清除缓存文件</h5><ul><li>方法与栗子</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure><h5 id="3-生成静态文件"><a class="markdownIt-Anchor" href="#3-生成静态文件"></a> 3、生成静态文件</h5><ul><li>方法与栗子①（g，generate的缩写）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure><ul><li>栗子②：文件生成后立即部署网站</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g -d</div></pre></td></tr></table></figure><ul><li>栗子③：文件生成时日志打印（此时，在博客根目录下可见debug.log文件）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g --debug</div></pre></td></tr></table></figure><h5 id="4-启动本地服务预览"><a class="markdownIt-Anchor" href="#4-启动本地服务预览"></a> 4、启动本地服务（预览）</h5><ul><li>方法与栗子（默认情况下，访问网址为： <code>http://localhost:4000/</code>）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure><h5 id="5-部署网站"><a class="markdownIt-Anchor" href="#5-部署网站"></a> 5、部署网站</h5><ul><li>方法与栗子</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure><p><i>指导文档：<a href="https://hexo.io/zh-cn/docs/commands" target="_blank">Hexo官方指令</a>    </i></p><h4 id="坑坑坑坑"><a class="markdownIt-Anchor" href="#坑坑坑坑"></a> 坑坑坑坑</h4><h5 id="坑一hexo-g生成的静态文件为0kb"><a class="markdownIt-Anchor" href="#坑一hexo-g生成的静态文件为0kb"></a> 坑一：hexo g生成的静态文件为0kb</h5><h6 id="现象"><a class="markdownIt-Anchor" href="#现象"></a> 现象</h6><p>hexo g --debug，可见错误如下：</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(node:3908) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency</div><div class="line">(Use `node --trace-warnings ...` to show where the warning was created)</div><div class="line">(node:3908) Warning: Accessing non-existent property 'column' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'column' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency</div></pre></td></tr></table></figure><h6 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h6><p>node版本过高，与旧hexo不兼容；且非稳定版本</p><p>原使用node版本：14.17.3</p><p>需降低node版本：12.22.5</p><p>👉<a href="https://nodejs.org/zh-cn/about/releases/" target="_blank">node稳定版</a></p><h6 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决</h6><p>使用稳定版本的node，如果不想卸载原版本的话（会有其他应用依赖高版本node的情况），可以安装nvm，实现多版本的node切换。</p><p>指导文档：<a href="https://blog.csdn.net/gitchatxiaomi/article/details/108965496" target="_blank">解决项目node版本不支持，windows多版本的node切换</a></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nvm ls               <span class="comment">// 查看已安装node版本</span></div><div class="line">nvm install vXX      <span class="comment">// 安装对应XXX版本的node</span></div><div class="line">nvm uninstall vXX    <span class="comment">// 卸载对应XXX版本的node</span></div><div class="line">nvm use xxx          <span class="comment">// 选择使用XXX版本</span></div></pre></td></tr></table></figure><h5 id="坑二修改文件夹名称小写大写提交后名称依旧未变"><a class="markdownIt-Anchor" href="#坑二修改文件夹名称小写大写提交后名称依旧未变"></a> 坑二：修改文件夹名称（小写↔大写），提交后名称依旧未变</h5><h6 id="原因-2"><a class="markdownIt-Anchor" href="#原因-2"></a> 原因</h6><p>git 命令默认的配置中忽略了文件名的大小写</p><h6 id="解决-2"><a class="markdownIt-Anchor" href="#解决-2"></a> 解决</h6><p>修改git的配置文件，让git执行时不要忽略大小写的修改。</p><ol><li>步骤1：进入到博客根目录</li><li>步骤2：找到.deploy_git文件夹（隐藏文件夹，度娘查如何显示文件）</li><li>步骤3：找到.git文件夹</li><li>步骤4：修改config文件里的 ignorecase = true 为 ignorecase = false，保存文件</li><li>步骤5：删除.deploy_git文件夹内的所有文件，并push到 Github 仓库（确保你的远程仓库内没有任何文件）</li><li>步骤6：执行hexo指令：hexo clean、hexo g -d</li></ol><p>指导文档：<a href="https://www.dazhuanlan.com/coolspeed/topics/1376322" target="_blank">Hexo部署到Github后文件夹名大小写引起的问题</a></p>]]></content>
+    
+    
+    <summary type="html">&lt;blockquote&gt;
+&lt;p&gt;前言：记录下常用的hexo指令和踩过的坑~&lt;/p&gt;&lt;/blockquote&gt;</summary>
+    
+    
+    
+    <category term="博客" scheme="https://zhouhuiqin.github.io/categories/博客/"/>
+    
+    
+    <category term="hexo" scheme="https://zhouhuiqin.github.io/tags/hexo/"/>
+    
+    <category term="github" scheme="https://zhouhuiqin.github.io/tags/github/"/>
+    
+  </entry>
   
   <entry>
     <title>趣丸测试工程师社招面试</title>
@@ -221,38 +245,11 @@
     
     <category term="Django" scheme="https://zhouhuiqin.github.io/tags/Django/"/>
     
-    <category term="JavaScript" scheme="https://zhouhuiqin.github.io/tags/JavaScript/"/>
-    
     <category term="Ajax" scheme="https://zhouhuiqin.github.io/tags/Ajax/"/>
     
+    <category term="JavaScript" scheme="https://zhouhuiqin.github.io/tags/JavaScript/"/>
+    
     <category term="jQuery" scheme="https://zhouhuiqin.github.io/tags/jQuery/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse</title>
-    <link href="https://zhouhuiqin.github.io/2021/06/03/FiddlerScript%E5%BA%94%E7%94%A8%20-%20OnBeforeRequest%E4%B8%8EOnBeforeResponse/"/>
-    <id>https://zhouhuiqin.github.io/2021/06/03/FiddlerScript%E5%BA%94%E7%94%A8%20-%20OnBeforeRequest%E4%B8%8EOnBeforeResponse/</id>
-    <published>2021-06-03T12:38:02.000Z</published>
-    <updated>2021-06-08T12:39:48.038Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p>前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！</p></blockquote><a id="more"></a><h4 id="一-入口"><a class="markdownIt-Anchor" href="#一-入口"></a> 一、入口</h4><ol><li><p>右侧顶部工具栏的FiddlerScript<br><img src="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%B8%80.png" alt="右侧顶部工具栏的FiddlerScript"></p></li><li><p>左侧顶部操作栏的Rules→Customize Rules…<br><img src="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%BA%8C.png" alt="左侧顶部操作栏的Rules→Customize Rules..."><br><i>当然，如上图，快捷键 Ctrl+R 也能够进入</i></p></li></ol><h4 id="二-使用举例"><a class="markdownIt-Anchor" href="#二-使用举例"></a> 二、使用举例</h4><h5 id="onbeforerequest"><a class="markdownIt-Anchor" href="#onbeforerequest"></a> OnBeforeRequest</h5><p><i>          在每次请求之前调用</i></p><pre class="highlight"><code class="">if(oSession.fullUrl.Contains(&quot;目标URL&quot;)){var mylogin='{更改后的请求body}';var requestJson=Fiddler.WebFormats.JSON.JsonDecode(mylogin);var reJsonDes=Fiddler.WebFormats.JSON.JsonEncode(requestJson.JSONObject);oSession.utilSetRequestBody(reJsonDes);}</code></pre><h5 id="onbeforeresponse"><a class="markdownIt-Anchor" href="#onbeforeresponse"></a> OnBeforeResponse</h5><p><i>          在每次请求之后调用</i></p><pre><code>if(oSession.fullUrl.Contains(&quot;目标URL&quot;)){var strBody=oSession.GetResponseBodyAsString();strBody=strBody.replace(&quot;期望数据&quot;);oSession.utilSetResponseBody(strBody);}  </code></pre><h4 id="三-使用框架如下"><a class="markdownIt-Anchor" href="#三-使用框架如下"></a> 三、使用框架如下：</h4><pre><code>if（满足某条件）{    获取待修改数据  替换该数据 重新写回请求  --如有必要，可以加些确认修改成功的方法：日志或窗口  }</code></pre><h5 id="1-满足某条件"><a class="markdownIt-Anchor" href="#1-满足某条件"></a> 1. 满足某条件</h5><p>oSession.uriContains（‘URL’）　　uri包含目标（模糊）<br>oSession.fullUrl.Contains(‘URL’)　　uri包含目标（模糊）<br>oSession.PathAndQuery == ‘URL’　　uri包含目标<br>oSession.HostnameIs(‘域名’) 　　homename为某域名<br>oSession.hostname == ‘域名’　　homename为某域名<br>oSession.host == ‘域名:端口’　　host为某域名与端口<br>oSession.responseCode == 304　　返回状态码为304</p><h5 id="2-获取待修改数据"><a class="markdownIt-Anchor" href="#2-获取待修改数据"></a> 2. 获取待修改数据</h5><p>var Request=oSession.GetRequestBodyAsString()　　获取Request 中的body字符串<br>var Response=oSession.GetResponseBodyAsString()　　获取Response 中的body字符串<br><font color="grey" size="0.875em">如果想要替换body里的某个变量，则可以如下：</font><br>var requestJson=Fiddler.WebFormats.JSON.JsonDecode(Request)　　  转换为可编辑的JSONObject变量<br>var Request=Fiddler.WebFormats.JSON.JsonDecode(requestJson)　　  重新设置Request Body</p><h5 id="3-替换该数据"><a class="markdownIt-Anchor" href="#3-替换该数据"></a> 3. 替换该数据</h5><p>Request=Request.replace(“1111”,“2222”)　　用正则表达式或者replace方法去修改string，将1111改为2222<br>Response=Response.replace(“2222”)　　用正则表达式或者replace方法去修改string，将body改为2222<br><font color="grey" size="0.875em">承接第2步：</font><br>requestJson.JSONObject[‘key’] = “true”　　将key对应的value改为true</p><h5 id="4-重新写回请求"><a class="markdownIt-Anchor" href="#4-重新写回请求"></a> 4. 重新写回请求</h5><p>oSession.utilSetRequestBody(Request)　　将修改后的body，重新写回Request中<br>oSession.utilSetResponseBody(Response)　　将修改后的body，重新写回Response中</p><h5 id="5-检查"><a class="markdownIt-Anchor" href="#5-检查"></a> 5. 检查</h5><p>可分别放置在第2步后和第三步后，对比修改效果<br>FiddlerObject.alert(Request)　　弹个对话框检查下修改后的body</p><p><i>也可以省略第2/3/4步，直接替换并写入 <code>oSession.utilReplaceInRequest(&quot;1111&quot;, &quot;2222&quot;)</code></i></p><h4 id="四-帮助文档"><a class="markdownIt-Anchor" href="#四-帮助文档"></a> 四、帮助文档</h4><p><a href="https://blog.csdn.net/qq_26877377/article/details/86715192" target="_blank">参考文档</a><br><a href="http://www.fiddlerbook.com/Fiddler/dev/ScriptSamples.asp" target="_blank">官方文档</a></p>]]></content>
-    
-    
-    <summary type="html">&lt;blockquote&gt;
-&lt;p&gt;前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！&lt;/p&gt;
-&lt;/blockquote&gt;</summary>
-    
-    
-    
-    <category term="计算机网络" scheme="https://zhouhuiqin.github.io/categories/计算机网络/"/>
-    
-    
-    <category term="Fiddler" scheme="https://zhouhuiqin.github.io/tags/Fiddler/"/>
-    
-    <category term="HTTP/HTTPS" scheme="https://zhouhuiqin.github.io/tags/HTTP-HTTPS/"/>
-    
-    <category term="抓包工具" scheme="https://zhouhuiqin.github.io/tags/抓包工具/"/>
     
   </entry>
   
