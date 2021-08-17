@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title>GitHub Hexo - hexo指令</title>
+      <link href="2021/08/16/GitHub%20Hexo%20-%20hexo%E6%8C%87%E4%BB%A4/"/>
+      <url>2021/08/16/GitHub%20Hexo%20-%20hexo%E6%8C%87%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：记录下常用的hexo指令和踩过的坑~</p><a id="more"></a></blockquote><h4 id="hexo指令"><a class="markdownIt-Anchor" href="#hexo指令"></a> Hexo指令</h4><h5 id="1-新建一篇文章"><a class="markdownIt-Anchor" href="#1-新建一篇文章"></a> 1、新建一篇文章</h5><ul><li>方法</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> [layout] &lt;title&gt;</div></pre></td></tr></table></figure><ul><li>栗子：新建本篇文章（标题包含空格时，需要使用引号括起来）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo <span class="keyword">new</span> <span class="string">"GitHub Hexo - hexo指令"</span></div></pre></td></tr></table></figure><h5 id="2-清除缓存文件"><a class="markdownIt-Anchor" href="#2-清除缓存文件"></a> 2、清除缓存文件</h5><ul><li>方法与栗子</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo clean</div></pre></td></tr></table></figure><h5 id="3-生成静态文件"><a class="markdownIt-Anchor" href="#3-生成静态文件"></a> 3、生成静态文件</h5><ul><li>方法与栗子①（g，generate的缩写）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g</div></pre></td></tr></table></figure><ul><li>栗子②：文件生成后立即部署网站</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g -d</div></pre></td></tr></table></figure><ul><li>栗子③：文件生成时日志打印（此时，在博客根目录下可见debug.log文件）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo g --debug</div></pre></td></tr></table></figure><h5 id="4-启动本地服务预览"><a class="markdownIt-Anchor" href="#4-启动本地服务预览"></a> 4、启动本地服务（预览）</h5><ul><li>方法与栗子（默认情况下，访问网址为： <code>http://localhost:4000/</code>）</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div></pre></td></tr></table></figure><h5 id="5-部署网站"><a class="markdownIt-Anchor" href="#5-部署网站"></a> 5、部署网站</h5><ul><li>方法与栗子</li></ul><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo d</div></pre></td></tr></table></figure><p><i>指导文档：<a href="https://hexo.io/zh-cn/docs/commands" target="_blank">Hexo官方指令</a>    </i></p><h4 id="坑坑坑坑"><a class="markdownIt-Anchor" href="#坑坑坑坑"></a> 坑坑坑坑</h4><h5 id="坑一hexo-g生成的静态文件为0kb"><a class="markdownIt-Anchor" href="#坑一hexo-g生成的静态文件为0kb"></a> 坑一：hexo g生成的静态文件为0kb</h5><h6 id="现象"><a class="markdownIt-Anchor" href="#现象"></a> 现象</h6><p>hexo g --debug，可见错误如下：</p><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">(node:3908) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency</div><div class="line">(Use `node --trace-warnings ...` to show where the warning was created)</div><div class="line">(node:3908) Warning: Accessing non-existent property 'column' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'lineno' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'column' of module exports inside circular dependency</div><div class="line">(node:3908) Warning: Accessing non-existent property 'filename' of module exports inside circular dependency</div></pre></td></tr></table></figure><h6 id="原因"><a class="markdownIt-Anchor" href="#原因"></a> 原因</h6><p>node版本过高，与旧hexo不兼容；且非稳定版本</p><p>原使用node版本：14.17.3</p><p>需降低node版本：12.22.5</p><p>👉<a href="https://nodejs.org/zh-cn/about/releases/" target="_blank">node稳定版</a></p><h6 id="解决"><a class="markdownIt-Anchor" href="#解决"></a> 解决</h6><p>使用稳定版本的node，如果不想卸载原版本的话（会有其他应用依赖高版本node的情况），可以安装nvm，实现多版本的node切换。</p><p>指导文档：<a href="https://blog.csdn.net/gitchatxiaomi/article/details/108965496" target="_blank">解决项目node版本不支持，windows多版本的node切换</a></p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">nvm ls               <span class="comment">// 查看已安装node版本</span></div><div class="line">nvm install vXX      <span class="comment">// 安装对应XXX版本的node</span></div><div class="line">nvm uninstall vXX    <span class="comment">// 卸载对应XXX版本的node</span></div><div class="line">nvm use xxx          <span class="comment">// 选择使用XXX版本</span></div></pre></td></tr></table></figure><h5 id="坑二修改文件夹名称小写大写提交后名称依旧未变"><a class="markdownIt-Anchor" href="#坑二修改文件夹名称小写大写提交后名称依旧未变"></a> 坑二：修改文件夹名称（小写↔大写），提交后名称依旧未变</h5><h6 id="原因-2"><a class="markdownIt-Anchor" href="#原因-2"></a> 原因</h6><p>git 命令默认的配置中忽略了文件名的大小写</p><h6 id="解决-2"><a class="markdownIt-Anchor" href="#解决-2"></a> 解决</h6><p>修改git的配置文件，让git执行时不要忽略大小写的修改。</p><ol><li>步骤1：进入到博客根目录</li><li>步骤2：找到.deploy_git文件夹（隐藏文件夹，度娘查如何显示文件）</li><li>步骤3：找到.git文件夹</li><li>步骤4：修改config文件里的 ignorecase = true 为 ignorecase = false，保存文件</li><li>步骤5：删除.deploy_git文件夹内的所有文件，并push到 Github 仓库（确保你的远程仓库内没有任何文件）</li><li>步骤6：执行hexo指令：hexo clean、hexo g -d</li></ol><p>指导文档：<a href="https://www.dazhuanlan.com/coolspeed/topics/1376322" target="_blank">Hexo部署到Github后文件夹名大小写引起的问题</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 博客 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> hexo </tag>
+            
+            <tag> github </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>趣丸测试工程师社招面试</title>
+      <link href="2021/07/20/%E8%B6%A3%E4%B8%B8%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/"/>
+      <url>2021/07/20/%E8%B6%A3%E4%B8%B8%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <script id="hbeData" type="hbeData" data-hmacdigest="b5db68e643fbfec468e0ec7ab54c312006bbb1cd522d51a83f084dcf40bfa610">4630436162ade97ba2718b7d0c4b3b63d28f4f8957eafc94ae2cbc2b301964478fe786301f9ccd33b95426fc96924782d318ff99665e93dfd64b9230014c867b4aa56984372f7ce81d72dbb1d962a6dd2de2dbd1b4816d0faf63e14e38f8068c04c38e9ffd55752aaa3a8f0144dce73879f472261563d115b37c1c2f52485440a4b4b175d44865b5d1d518b5fa2273292c178871685d48cee77e392fd488bfc8e88a4f5537a241a9a00982cc7821041683e8398ce1bc6bed7e49de7b5c91bde576c02297e8bab5c74bce564227ced646170b683aa7e89d1ec348411d04517e222fa77abb29db74a9929052063e9eb401e04773082079b130b9877f2fc640e93cc5f83db8a83b0f3ccda0e27b9cbc2fc1be2ee48ab8ed5c9149862224f04bba8a8bd1a58de4d82156e5d1a16c8d256ad4a072065f59b2291894f0188a926ed821a683fdb9c8e4577fa6542d0af0322ef5959394bcdb02695e22334392f38625c9f26f4071056e393f86e854fe1b6e666df980978b5b8f6072676ee14baaaf911862aa73e8f38c06ba2b3cd6cafcb0413fa826e32084b8d068722d5eb8c7aa786c53966dc351b6f2a825f45a699926c4725e2b483d2b22c9e3877ed327e22e06498e4f5477cafd59908dad69b13447e458d62d8778f41125f8d4573d4a34d646259d97d2a0ea017b5b2d4bb9091041799c02e098e122416778b381e12cce952511e59fcf50e9afc1440ac7143061a76e9d623acbc9ca4563bade5c043aa2981e9ba87b10f36f5a44456d07cf3249038548f904e0f5ad7572866e29827105245d92df9c0d94c0136dbf46d5e36432136d74f5b8607ff80dcbe3a6b91777749628f8651ed43c90b641c061cfb9e8763a4e5d041fefadcf45293f9a10448f8dc81feaa5bedf9349e47fc9e853c0ecd8c146a0239c4fb4b7f5db72d5d5e29b9ada5d65ee1eed6f030119d86f1b82613c2e21161f20135a96f1db4040da7c564df1f2384631d971806ff38e396c0a7797aea74effd4b62ebf03b8b5f43e39ffe24b06723c31778757a764756125c569af0fbfa78b9268f2cf522e1be978f8e6bb1deeda9186f74387aadeae0941f4324e4f7e7bf9e6911bc277918cd9d67e09d7116e7abe4cd50a2858ee94b2887fd64ea47d231d4226ad8fd36e4cbd324b0027809f7abee8d4f317f67ece9c33a618ed935793d4d6ec23e0fa44f3ef180c6dc9406aadabda3136a67df76e7371db7cfc4c22927eb2b87d1e6a469be19adf1aa9ebdc7e4c36e9d0edee4d57c56a106bd2c42d406db17ee281b9facc26152627a089106b46e3c9c00f7ed8a298b19ad5d6d93ab99eb60bb7508ee1b3fa0629a0dcda9c0c440df99d4824c37ca99206cea5f69344fb8aae1944991417991c26c4f0ac7f0f48567d58f87dbc82060dfd6edc481770679a7345d13440eb8b628bf27a0755c5f57d84adfabbd1b31c59faf1d2c456e16eb819f033f91962c744bca0bde68a6130ba3f07c03fccb042295a3330d1ff8fa1ad4dd809856762e65775a1ffca8efc868f05da1f6e8d9905113ce86f23d7a570555b20fd201fd1893b2b33dc68fdaa4e55bdb6115ecfc5e15620a93b5d2e598e6dbcd1400eb72a413039b03a270fbf136e520d8acd394dcaf718ee9bd6f8daa5c5d8c395caa755cb1987c54e2f5375202daefabc18c230ae6eee9c6d22526a5c0122ebe84f0888325bdb4c542cba7ad8705ae0401b6fa97a35f931497f763c4b9e6099ce90e8ec805a0d20f8bc5b1db7fcbb832413a302e1576e09e6faf4ac6ebb7535f245c7913a428ae54bf854916c49687b865708ffc289f62102dce4447da2bcc16cba6c6296ad2a6a1eac865b9a2f99adb90809d1a42a2e4fdae25e4a19ecef48c8f0b49ebfd5f088fd606d9548f787fa439d99c44516024ad46ca6c85356813ad3c5861ab68800be315f36a555d2cbd02a38119ecab22dcd937c4457bfed4f8a4bead0f71de11d1078b4317749e2475167f66d94ff9c61c7e1ef9dee4f9a64e99297b3775b73d29d1889c87be2578570301c8f9fe456bbd7ee12cfc215b6329435544cb1fa6dc26ce3f43f06501ed8d2ba58013c60d573a13db99f24c62b3c78ecdc170bd25af872c51b77c5f20cb3fd4d61bd06ed51dc5cae74c3484672001d9ef00b592d2524a04b604df2a5f4604f7e20f98a15f3e53c5d8da4634732a9adbda9dc1c41ca7b649220cbbd73d433691dbd9601d260fdb4b7f2ce1a8ddf6243e4d681be56e141df64b7795a6ac938021a4acbbb0ed448405c711cc1937ad6180a4532308afd241b023f267d82e033d15a9e1c42e7cb2c7738c49b3927776a32effcf5e8460d345cb367a4b8d14025882f4f199a4ee157e2fc8f8a46445e76db09922715f44040f0f1d72c3082f6337f5c5e3373ce9335b3bba42e69dea012ba01af5fcd49476e7316901f66ed33716ff67978aa6d4d24973b469bdd76e4567911af9bf30eb6ca8cb98824d7394c8411af1db71bde5f81a2d1ba64c13e87fe385d9ccbbe8b3271d20070402874d44860bb4dd9c0cb63ffd459c86abef45982a784cfdf68b8f9e395a856ef974f9e3be20037cb0cc1e472867adbb73976a96f64c0ba6c10700b7f5456fc8ca551a635ac9dec4e8f1cba90746122dc289516933c057d25b31aa12c1157228d61339cfae79673b8a2594f433cf56e0f90c7d6a3a65b64e75d2b283a9acfd54096f6e84cbd13a49c4832635d5a2a200e25abf57d747184706f9ca52fa150c4347dbb871eabc3ce6021028e9b311baecd933cdd17f27ee8674b1534c7247d501dc04aacb93db9fbda85b5b7c69fe981e577c4376c4306e7112f513bd7a70e6f83b358bc01baeac9ba42e94fa3a60b09e446f944a97fb908046aaabac490f82db40538be7b3ac4fec19ae4448fe7207fc9db38362eedee7320414a15b01105c89456249eea05a42fa5e9eccd28f03e52766af7a43a92514ea26da07233b1f9cc8f0df4eb83376090011b8e6499188bfd80420448e039f0bbb05daa97d861913af04afacdd9aa1bdaffd11fad839f2fc8f2519d1644d3f7b75b20d56bb674395ce96f499d7f752bd51249ce75f58530844edc1c1ce2fcc28afaf6a4a5af593627e7ddba054b99058220ddf810d37d31f4a884c37530fcdb8bbb2af7ef3016ec96b10a3e1e4a297c9a018e7700e03fee1c839d91866b170f80ece7a3c0a1f6b7692c562c5588ee518f2af276930e3d42f204b4260bfa3ad10a761bb212112c0b021fcd175dcea88e13e1bfb7c6fcb7e0aac59729d2834678d883ac130520487d232beb1d8c2b42f2ee1f96ef37792fbefb4d51e5b9ab1ba62759d24ba930e797a3ae32f5a7578f85c050c8cfd343e0b05c44d6c69c319ee047ad6785b1e3b8f2cd955b9be92fc3f35e2e7507dbcc3256717a2e8c3b7fa77c2418b20b26dd5627d3e6efb8ed3c5c3c1b24155fce19a327a583b9f6a4010df2196fbaa75ea85b26f65f2c130d68fdd6a1b1d0effadb6a484dd4383ba238dfbb515e14949c990e4f6245b952e776180027a4c6c201d22eedbb94742487666c864775dac7e900c7a7dbbde75573e0cbb04bf14ed4946f1c6923aed81c269c101166dd754f63a6a70a4f4ecbe81983792426af168f3f01f774f2c4936b898d6c6da7c7ca79d768a46b0663b6250b8a1f2889c5d0a054bfef856c6a5c25b4b749792fac1a5042e68753ec492eb73967ce77e1ea4eb343f626fd36e8dd5c225502adaa56962f6e47c8938311cb62872a916676d1cc32a5ba64e25a6905c9d77c1a61fd0a7379aec794dd02e5fbf9e8ba7f5bea87fff999b4279a108245e971cdb5cc3d20db4d5621dab8135b13afbc0b63570bd0c8a65f9e504535db87f914bf847fb048de9b250f0e91014aa0640692bb0961187beafa39af8f4ecd04ae2dccdf807daa4027e4180f3fa49dafa43b1eee951385dc4b4a3794266f45d40a0570ef25ce7dbb6892465797da0150cc6eb94396903ff33e09c5b806d3fb3ca895daa114318c74548d03fa34c21ee0</script>  <div class="hbe hbe-content">    <div class="hbe hbe-input hbe-input-default">      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>      </label>    </div>  </div></div><script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      
+      
+      <categories>
+          
+          <category> 面筋 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 面筋 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>荔枝测试工程师笔试</title>
+      <link href="2021/07/08/%E8%8D%94%E6%9E%9D%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95/"/>
+      <url>2021/07/08/%E8%8D%94%E6%9E%9D%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%AC%94%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：出师不利哇。第一次进行笔试，在迷迷瞪瞪刚睡醒的下午，哐哐打开链接就是答题。然鹅，一大半时间都被绕在找规律的题目里，真实懵圈。</p><a id="more"></a></blockquote><h4 id="答题项"><a class="markdownIt-Anchor" href="#答题项"></a> 答题项</h4><ul><li>答题方式：</li></ul><p>笔试链接发到邮箱，准备好了则点开邮件地址的链接开始答题</p><ul><li>答题限制：</li></ul><p>限时1h，诚信答题，未设防作弊操作</p><ul><li>答题正文</li></ul><p>题1  微信聊天输入文本框的用例设计</p><p>题2  找出程序、产品、测试自研的沟通语言规律</p><p>题3  用你熟悉的语言实现：找出字符串s里不含有重复字符的最长子串的长度</p><p>题4  说下项目中的专项测试背景、执行过程、你的角色、专项成效</p><h4 id="提升项"><a class="markdownIt-Anchor" href="#提升项"></a> 提升项</h4><ul><li><p>技术能力提升：多刷多总结python编程案例</p></li><li><p>业务能力总结：专项测试（STAR原则）</p></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 笔试 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔试 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>SheIn测试工程师社招面试</title>
+      <link href="2021/07/06/SheIn%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/"/>
+      <url>2021/07/06/SheIn%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：距离上一次bigo面试后的4个月，这次我的第二次社招面试经历，也是第一次远程视频面，话说视频面的感觉真的比直接电话面还紧张，紧张到午休没休好，二面下午面的时候更紧张了额(◐‿◑)﻿至于现场面，（因为跟技术无关）我感觉可以另开文章分享哈哈哈~</p></blockquote><a id="more"></a><h4 id="技术一面40min"><a class="markdownIt-Anchor" href="#技术一面40min"></a> 技术一面（40min）</h4><ul><li>研发流程是怎样的</li><li>APP除了功能、稳定性外，还测什么</li><li>jmeter性能做的如何</li><li>monkey压测是怎么做的</li><li>为什么想到要搭建平台</li><li>数据库（查询、多表、分组、筛选）</li><li>业务数据生成为什么用到了Robot Framework，不会感觉太重嘛（（此处面试官提到了python的faker）<br><i>反问：高阶招聘主要考核什么？–性能测试，结果分析；自动化框架</i></li></ul><h4 id="技术二面20min"><a class="markdownIt-Anchor" href="#技术二面20min"></a> 技术二面（20min）</h4><ul><li>web应用与安卓应用，从测试角度，区别是什么</li><li>印象深刻的一个线上故障的跟进</li><li>研发流程是怎么样的</li><li>在流程里，你做了哪些推动或改善</li><li>用例设计：有个定时任务会在周一早上8点推送数据（数据量大）</li><li>为什么想要换工作</li><li>未来两年的一个在工作和个人的一个规划</li><li>朋友眼中的你是怎样的</li><li>如果换工作后，如果不是管理岗，会怎样</li></ul><h4 id="hr现场面10min"><a class="markdownIt-Anchor" href="#hr现场面10min"></a> hr现场面（10min）</h4><ul><li>过来需要多久</li><li>为什么考虑看工作机会</li><li>觉得前两轮面试官对你的评价如何</li><li>现工资以及薪资构成</li><li>期望工资是多少</li><li>如果期望工资无法满足，能接受吗？</li><li>现在是否有其他offer</li></ul><h4 id="提升项"><a class="markdownIt-Anchor" href="#提升项"></a> 提升项</h4><ul><li>基础：不同平台测试差异项</li><li>业务能力总结：测试项目的架构与技术、测试难点/案例/方案</li><li>技术能力总结：已掌握技能和工具的原理</li><li>进阶能力实践：自动化框架实践</li><li>进阶能力实践：性能测试实践</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面筋 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 面筋 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BurpSuite应用 - 抓包改包</title>
+      <link href="2021/07/06/BurpSuite%E5%BA%94%E7%94%A8%20-%20%E6%8A%93%E5%8C%85%E6%94%B9%E5%8C%85/"/>
+      <url>2021/07/06/BurpSuite%E5%BA%94%E7%94%A8%20-%20%E6%8A%93%E5%8C%85%E6%94%B9%E5%8C%85/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> BurpSuite </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络基础知识（3）- 数据链路层</title>
+      <link href="2021/06/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%883%EF%BC%89-%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"/>
+      <url>2021/06/28/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%883%EF%BC%89-%20%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python Django框架 - jQuery应用 - 获取后台返回给到前端select</title>
+      <link href="2021/06/28/Python%20Django%E6%A1%86%E6%9E%B6%20-%20%E8%8E%B7%E5%8F%96%E5%90%8E%E5%8F%B0%E8%BF%94%E5%9B%9E%E7%BB%99%E5%88%B0%E5%89%8D%E7%AB%AFselect/"/>
+      <url>2021/06/28/Python%20Django%E6%A1%86%E6%9E%B6%20-%20%E8%8E%B7%E5%8F%96%E5%90%8E%E5%8F%B0%E8%BF%94%E5%9B%9E%E7%BB%99%E5%88%B0%E5%89%8D%E7%AB%AFselect/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：搭好环境后，开始准备将原exe上“连接设备”和“获取设备”这两功能先转移到web上。此案例讲的就是“获取设备”这一步，从构思-实现-踩坑-解决来讲述。</p></blockquote><a id="more"></a><h4 id="目的"><a class="markdownIt-Anchor" href="#目的"></a> 目的</h4><p>exe上的功能如下图：</p><p><img src="/2021/06/28/Python Django框架 - 获取后台返回给到前端select/exe%E4%B8%8A%E7%9A%84%E5%8A%9F%E8%83%BD.png" alt=""></p><p>功能1 连接设备（非本文重点）</p><p>功能2 获取设备，通过打开exe或点击刷新触发被控设备列表的刷新——该功能需转化到web上</p><h4 id="构思"><a class="markdownIt-Anchor" href="#构思"></a> 构思</h4><p>设备列表从哪来就从哪获取。是从数据库？还是后台查询服务返回？——后台返回</p><p>设备怎么展示？——下拉框元素展示</p><h4 id="实现"><a class="markdownIt-Anchor" href="#实现"></a> 实现</h4><p>1、目标页面刷新时，触发jQuery的get请求</p><p>2、通过get请求的url找到view层</p><p>2、view层实现获取设备的功能</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Django </tag>
+            
+            <tag> jQuery </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python Django框架 - jQuery基础</title>
+      <link href="2021/06/22/Python%20Django%E6%A1%86%E6%9E%B6%20-%20jQuery%E5%BA%94%E7%94%A8/"/>
+      <url>2021/06/22/Python%20Django%E6%A1%86%E6%9E%B6%20-%20jQuery%E5%BA%94%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：继上篇的Ajax学习，还记得里面提到的$.ajax嘛。发现是自己草率了，只搜索了后面几个英文，谁知它竟是 jQuery ajax() 方法。anyway，就当边学边用啦~</p></blockquote><a id="more"></a>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Django </tag>
+            
+            <tag> jQuery </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python Django框架 - Ajax应用</title>
+      <link href="2021/06/19/Python%20Django%E6%A1%86%E6%9E%B6%20-%20Ajax%E5%BA%94%E7%94%A8/"/>
+      <url>2021/06/19/Python%20Django%E6%A1%86%E6%9E%B6%20-%20Ajax%E5%BA%94%E7%94%A8/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：当学到JavaScript时，老是有Ajax的名词跳出来，并且参考的案例代码也有$.ajax的词汇频现，这不是逼死个强迫症嘛，在JavaScript基础大致了解后，又看了下Ajax。</p></blockquote><a id="more"></a><h4 id="定义"><a class="markdownIt-Anchor" href="#定义"></a> 定义</h4><ul><li>AJAX = Asynchronous JavaScript and XML（异步的 JavaScript 和 XML）</li><li>AJAX 不是新的编程语言，而是一种使用现有标准的新方法</li><li>AJAX 最大的优点是在不重新加载整个页面的情况下，可以与服务器交换数据并更新部分网页内容</li><li>AJAX 不需要任何浏览器插件，但需要用户允许JavaScript在浏览器上执行</li></ul><h4 id="工作原理"><a class="markdownIt-Anchor" href="#工作原理"></a> 工作原理</h4><p><img src="/2021/06/19/Python Django框架 - Ajax应用/AJAX%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86.png" alt="AJAX工作原理"></p><h4 id="使用方式"><a class="markdownIt-Anchor" href="#使用方式"></a> 使用方式</h4><h5 id="1-创建-xmlhttprequest-对象"><a class="markdownIt-Anchor" href="#1-创建-xmlhttprequest-对象"></a> 1. 创建 XMLHttpRequest 对象</h5><ul><li>所有现代浏览器（IE7+、Firefox、Chrome、Safari 以及 Opera）均内建 XMLHttpRequest 对象<br><code>variable=new XMLHttpRequest();</code></li><li>老版本的 Internet Explorer （IE5 和 IE6）使用 ActiveX 对象<br><code>variable=new ActiveXObject(&quot;Microsoft.XMLHTTP&quot;);</code></li></ul><h5 id="2-向服务器发送请求"><a class="markdownIt-Anchor" href="#2-向服务器发送请求"></a> 2. 向服务器发送请求</h5><ul><li>栗子：get请求</li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/try/ajax/demo_get2.php?fname=Henry&amp;lname=Ford"</span>,<span class="literal">true</span>);  </div><div class="line">xmlhttp.send();</div></pre></td></tr></table></figure><ul><li>栗子：post请求</li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">xmlhttp.open(<span class="string">"POST"</span>,<span class="string">"/try/ajax/demo_post2.php"</span>,<span class="literal">true</span>);</div><div class="line">xmlhttp.setRequestHeader(<span class="string">"Content-type"</span>,<span class="string">"application/x-www-form-urlencoded"</span>);</div><div class="line">xmlhttp.send(<span class="string">"fname=Henry&amp;lname=Ford"</span>);</div></pre></td></tr></table></figure><p><img src="/2021/06/19/Python Django框架 - Ajax应用/%E5%90%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%8F%91%E9%80%81%E8%AF%B7%E6%B1%82.png" alt="向服务器发送请求"></p><h5 id="3-服务器响应"><a class="markdownIt-Anchor" href="#3-服务器响应"></a> 3. 服务器响应</h5><ul><li>来自服务器的响应并非 XML,使用 responseText 属性<br><code>document.getElementById(&quot;myDiv&quot;).innerHTML=xmlhttp.responseText;</code></li><li>来自服务器的响应是 XML,且需要作为 XML 对象进行解析，使用 responseXML 属性<br><code>document.getElementById(&quot;myDiv&quot;).innerHTML=txt;</code></li></ul><h5 id="4-onreadystatechange-事件"><a class="markdownIt-Anchor" href="#4-onreadystatechange-事件"></a> 4. onreadystatechange 事件</h5><p><i>使用场景：当需要执行一些基于响应的任务时，例如判断响应状态status为200</i></p><p><img src="/2021/06/19/Python Django框架 - Ajax应用/onreadystatechange%E4%BA%8B%E4%BB%B6.png" alt="onreadystatechange事件"></p><ul><li>普通：直接使用onreadystatechange 事件</li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">var</span> xmlhttp;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</div><div class="line">&#123;</div><div class="line"><span class="comment">//  IE7+, Firefox, Chrome, Opera, Safari 浏览器执行代码</span></div><div class="line">xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line"><span class="comment">// IE6, IE5 浏览器执行代码</span></div><div class="line">xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">&#125;</div><div class="line">xmlhttp.onreadystatechange=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</div><div class="line">&#123;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">xmlhttp.open(<span class="string">"GET"</span>,<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="literal">true</span>);</div><div class="line">xmlhttp.send();</div><div class="line">&#125;</div></pre></td></tr></table></figure><ul><li>进阶：使用回调函数<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup></li></ul><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> xmlhttp;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">loadXMLDoc</span>(<span class="params">url,cfunc</span>)</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.XMLHttpRequest)</div><div class="line">  &#123;<span class="comment">// IE7+, Firefox, Chrome, Opera, Safari 代码</span></div><div class="line">  xmlhttp=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">  &#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">  &#123;<span class="comment">// IE6, IE5 代码</span></div><div class="line">  xmlhttp=<span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>);</div><div class="line">  &#125;</div><div class="line">xmlhttp.onreadystatechange=cfunc;</div><div class="line">xmlhttp.open(<span class="string">"GET"</span>,url,<span class="literal">true</span>);</div><div class="line">xmlhttp.send();</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line">loadXMLDoc(<span class="string">"/try/ajax/ajax_info.txt"</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span></div><div class="line">&#123;</div><div class="line"><span class="keyword">if</span> (xmlhttp.readyState==<span class="number">4</span> &amp;&amp; xmlhttp.status==<span class="number">200</span>)</div><div class="line">&#123;</div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">"myDiv"</span>).innerHTML=xmlhttp.responseText;</div><div class="line">&#125;</div><div class="line">&#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure><h5 id="5-高级用法"><a class="markdownIt-Anchor" href="#5-高级用法"></a> 5. 高级用法</h5><ul><li>AJAX ASP/PHP 实例 —— 创造动态性更强的应用程序</li><li>AJAX Database 实例 —— 用来与数据库进行动态通信</li><li>AJAX XML 实例 —— 用来与 XML 文件进行交互式通信</li></ul><p><i>JavaScript调用的服务器页面ASP和PHP可实现以上用法</i></p><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>回调函数是一种以参数形式传递给另一个函数的函数；如果网站上存在多个AJAX任务，则应该为创建 XMLHttpRequest 对象编写一个标准的函数，并为每个 AJAX 任务调用该函数 <a href="#fnref1" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Django </tag>
+            
+            <tag> Ajax </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Python Django框架 - JavaScript Ajax jQuery关系梳理</title>
+      <link href="2021/06/19/Python%20Django%E6%A1%86%E6%9E%B6%20-%20JavaScript%20Ajax%20jQuery%E5%85%B3%E7%B3%BB%E6%A2%B3%E7%90%86/"/>
+      <url>2021/06/19/Python%20Django%E6%A1%86%E6%9E%B6%20-%20JavaScript%20Ajax%20jQuery%E5%85%B3%E7%B3%BB%E6%A2%B3%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：学啊学，忽遇难题。到底JavaScript Ajax jQuery这三者啥关系啥区别呢。那我搭项目时用谁好呢（此处颇有君王选妃之难，hhh)。稍稍梳理好后，发现是自己多想了￣▽￣。</p></blockquote><a id="more"></a><p>Django</p><p>Python</p><p>Bootstrap</p><p>HTML</p><p>CSS</p><hr><p>jQuery与JavaScript与ajax三者的区别与联系<br>简单总结：<br>1、JS是一门前端语言。<br>2、Ajax是一门技术，它提供了异步更新的机制，使用客户端与服务器间交换数据而非整个页面文档，实现页面的局部更新。<br>3、jQuery是一个框架，它对JS进行了封装，使其更方便使用。jQuery使得JS与Ajax的使用更方便</p><p>关系比喻：<br>若把js比作木头，那么jquery就是木板（半成品）<br>jQuery与ajax都是js的一个框架，各有各的功能，若js是父亲的话，jquery与ajax就是两个儿子</p><p>详细情况：<br>1.javascript是一种在客户端执行的脚本语言。ajax是基于javascript的一种技术，它主要用途是提供异步刷新（只刷新页面的一部分，而不是整个页面都刷新）。一个是语言,一个是技术,两者有本质区别.</p><p>2.javascript是一种在浏览器端执行的脚本语言，Ajax是一种创建交互式网页应用的开发技术 ，它是利用了一系列相关的技术其中就包括javascript。</p><p>解释：<br>javaScript是用于Web客户端开发的脚本语言，Ajax是基于JS语言，主要组合JS、CSS、XML三种技术的新技术，是用于创建交互式网页应用的网页开发技术。jQuery是JS的框架，基于JS语言，集合Ajax技术开发出来的JS库，封装JS和Ajax的功能，提供函数接口，大大简化了Ajax，JS的操作。</p><hr><p>JavaScript<br>简介：<br>简写形式就是JS，一种广泛用于客户端Web开发的脚本语言，常用来给HTML网页添加动态功能（其编写的程序可以被嵌入到HTML或XML页面中，并直接在浏览器中解释执行）</p><p>组成：<br>核心（ECMAScript）、文档对象模型（Document Object Model，简称DOM）、浏览器对象模型（Browser Object Model，简称BOM）</p><p>描述：<br>Javascript就是适应动态网页制作的需要而诞生的一种新的编程语言，如今越来越广泛地使用于Internet网页制作上。<br>Javascript的出现使得网页和用户之间实现了一种实时性的、动态的、交互性的关系，使网页包含更多活跃的元素和更加精彩的内容。<br>Javascript短小精悍，又是在客户机上执行的，大大提高了网页的浏览速度和交互能力。同时它又是专门为制作Web网页而量身定做的一种简单的编程语言。</p><p>Ajax<br>简介：<br>即“Asynchronous JavaScript and XML”（异步JavaScript和XML)，AJAX并非缩写词，而是由Jesse James Gaiiett创造的名词，是指一种创建交互式网页应用的网页开发技术</p><p>组成：<br>基于XHTML和CSS标准的表示；<br>使用Document Object Model进行动态显示和交互；<br>使用XML和XSLT做数据交互和操作；<br>使用XML HttpRequest与服务器进行异步通信；<br>使用JavaScript绑定一切</p><p>描述：<br>Ajax是结合了Java技术、XML以及JavaScript等编程技术，可以让开发人员构建基于Java技术的Web应用，并打破了使用页面重载的管理。<br>Ajax技术使用非同步的HTTP请求，在Browser和Web Server之间传递数据，使Browser只更新部分网页内容而不重新载入整个网页。<br>Ajax是使用客户端脚本与Web服务器交换数据的Web应用开发方法。这样，Web页面不用打断交互流程进行重新加裁，就可以动态地更新。使用Ajax，用户可以创建接近本地桌面应用的直接、高可用、更丰富、更动态的Web用户界面</p><p>Ajax应用程序与浏览器和平台无关的！</p><p>jQuery<br>简介<br>是一个快速的，简洁的javaScript库，使用户能更方便地处理HTML documents、events、实现动画效果，并且方便地为网站提供AJAX交互</p><p>特点<br>jQuery是当前很流行的一个JavaScript框架，使用类似于CSS的选择器，可以方便的操作HTML元素，拥有很好的可扩展性，拥有不少插件</p><p>描述<br>对于程序员来说，简化javascript和ajax编程，能够使程序员从设计和书写繁杂的JS应用中解脱出来，将关注点转向功能需求而非实现细节上，从而提高项目的开发速度。<br>对于用户来说，改善了页面的视觉效果，增强了与页面的交互性，体验更绚丽的网页物资。<br>javaScript框架实际上是一系列工具和函数。</p><table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td>JavaScript</td><td>前端语言</td><td></td></tr><tr><td>Ajax</td><td>技术</td><td>Asynchronous JavaScript and XML，一种创建交互式网页应用的网页开发技术</td></tr><tr><td>jQuery</td><td>框架</td><td>快速、简洁的JavaScript库，JavaScript框架</td></tr><tr><td></td><td></td><td></td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> Web项目 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Python </tag>
+            
+            <tag> Django </tag>
+            
+            <tag> Ajax </tag>
+            
+            <tag> JavaScript </tag>
+            
+            <tag> jQuery </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse</title>
+      <link href="2021/06/03/FiddlerScript%E5%BA%94%E7%94%A8%20-%20OnBeforeRequest%E4%B8%8EOnBeforeResponse/"/>
+      <url>2021/06/03/FiddlerScript%E5%BA%94%E7%94%A8%20-%20OnBeforeRequest%E4%B8%8EOnBeforeResponse/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：使用FiddlerScript是Fiddler的改包方法之一，在业务中，如果不是修改statusCode这种简单的改包，我会更喜欢用FiddlerScript！</p></blockquote><a id="more"></a><h4 id="一-入口"><a class="markdownIt-Anchor" href="#一-入口"></a> 一、入口</h4><ol><li><p>右侧顶部工具栏的FiddlerScript<br><img src="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%B8%80.png" alt="右侧顶部工具栏的FiddlerScript"></p></li><li><p>左侧顶部操作栏的Rules→Customize Rules…<br><img src="/2021/06/03/FiddlerScript应用 - OnBeforeRequest与OnBeforeResponse/%E5%85%A5%E5%8F%A3%E4%BA%8C.png" alt="左侧顶部操作栏的Rules→Customize Rules..."><br><i>当然，如上图，快捷键 Ctrl+R 也能够进入</i></p></li></ol><h4 id="二-使用举例"><a class="markdownIt-Anchor" href="#二-使用举例"></a> 二、使用举例</h4><h5 id="onbeforerequest"><a class="markdownIt-Anchor" href="#onbeforerequest"></a> OnBeforeRequest</h5><p><i>          在每次请求之前调用</i></p><pre class="highlight"><code class="">if(oSession.fullUrl.Contains(&quot;目标URL&quot;)){var mylogin='{更改后的请求body}';var requestJson=Fiddler.WebFormats.JSON.JsonDecode(mylogin);var reJsonDes=Fiddler.WebFormats.JSON.JsonEncode(requestJson.JSONObject);oSession.utilSetRequestBody(reJsonDes);}</code></pre><h5 id="onbeforeresponse"><a class="markdownIt-Anchor" href="#onbeforeresponse"></a> OnBeforeResponse</h5><p><i>          在每次请求之后调用</i></p><pre><code>if(oSession.fullUrl.Contains(&quot;目标URL&quot;)){var strBody=oSession.GetResponseBodyAsString();strBody=strBody.replace(&quot;期望数据&quot;);oSession.utilSetResponseBody(strBody);}  </code></pre><h4 id="三-使用框架如下"><a class="markdownIt-Anchor" href="#三-使用框架如下"></a> 三、使用框架如下：</h4><pre><code>if（满足某条件）{    获取待修改数据  替换该数据 重新写回请求  --如有必要，可以加些确认修改成功的方法：日志或窗口  }</code></pre><h5 id="1-满足某条件"><a class="markdownIt-Anchor" href="#1-满足某条件"></a> 1. 满足某条件</h5><p>oSession.uriContains（‘URL’）　　uri包含目标（模糊）<br>oSession.fullUrl.Contains(‘URL’)　　uri包含目标（模糊）<br>oSession.PathAndQuery == ‘URL’　　uri包含目标<br>oSession.HostnameIs(‘域名’) 　　homename为某域名<br>oSession.hostname == ‘域名’　　homename为某域名<br>oSession.host == ‘域名:端口’　　host为某域名与端口<br>oSession.responseCode == 304　　返回状态码为304</p><h5 id="2-获取待修改数据"><a class="markdownIt-Anchor" href="#2-获取待修改数据"></a> 2. 获取待修改数据</h5><p>var Request=oSession.GetRequestBodyAsString()　　获取Request 中的body字符串<br>var Response=oSession.GetResponseBodyAsString()　　获取Response 中的body字符串<br><font color="grey" size="0.875em">如果想要替换body里的某个变量，则可以如下：</font><br>var requestJson=Fiddler.WebFormats.JSON.JsonDecode(Request)　　  转换为可编辑的JSONObject变量<br>var Request=Fiddler.WebFormats.JSON.JsonDecode(requestJson)　　  重新设置Request Body</p><h5 id="3-替换该数据"><a class="markdownIt-Anchor" href="#3-替换该数据"></a> 3. 替换该数据</h5><p>Request=Request.replace(“1111”,“2222”)　　用正则表达式或者replace方法去修改string，将1111改为2222<br>Response=Response.replace(“2222”)　　用正则表达式或者replace方法去修改string，将body改为2222<br><font color="grey" size="0.875em">承接第2步：</font><br>requestJson.JSONObject[‘key’] = “true”　　将key对应的value改为true</p><h5 id="4-重新写回请求"><a class="markdownIt-Anchor" href="#4-重新写回请求"></a> 4. 重新写回请求</h5><p>oSession.utilSetRequestBody(Request)　　将修改后的body，重新写回Request中<br>oSession.utilSetResponseBody(Response)　　将修改后的body，重新写回Response中</p><h5 id="5-检查"><a class="markdownIt-Anchor" href="#5-检查"></a> 5. 检查</h5><p>可分别放置在第2步后和第三步后，对比修改效果<br>FiddlerObject.alert(Request)　　弹个对话框检查下修改后的body</p><p><i>也可以省略第2/3/4步，直接替换并写入 <code>oSession.utilReplaceInRequest(&quot;1111&quot;, &quot;2222&quot;)</code></i></p><h4 id="四-帮助文档"><a class="markdownIt-Anchor" href="#四-帮助文档"></a> 四、帮助文档</h4><p><a href="https://blog.csdn.net/qq_26877377/article/details/86715192" target="_blank">参考文档</a><br><a href="http://www.fiddlerbook.com/Fiddler/dev/ScriptSamples.asp" target="_blank">官方文档</a></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Fiddler </tag>
+            
+            <tag> HTTP/HTTPS </tag>
+            
+            <tag> 抓包工具 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络基础知识（2）- 物理层</title>
+      <link href="2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89-%20%E7%89%A9%E7%90%86%E5%B1%82/"/>
+      <url>2021/05/25/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%882%EF%BC%89-%20%E7%89%A9%E7%90%86%E5%B1%82/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：物理层，它是计算机网络的第一层，它虽然处于最底层，却是整个开放系统的基础。关键词记忆——“信号和介质”。</p></blockquote><a id="more"></a><h4 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h4><p>解决<strong>如何</strong>在连接各种计算机的传输媒体上传输<strong>数据比特流</strong>，而不是指具体的传输媒体（通俗的讲就是传输的数据是通过何种方式，以什么形态传输的，类似于我们说话，别人是如何听到的，通过的就是声波，计算机传数据，又是怎么样把数据带过去的呢）。</p><p>物理层的主要任务：确定传输媒体的接口的一些特性，包括，</p><ul><li>机械特性：接口形状，大小，引线数目</li><li>电气特性：例如规定电压范围(-5V-5V)</li><li>功能特性：例如规定-5V上0，+5V是1</li><li>过程特性：也称规程特性，规定建立连接时各个相关部件的工作步骤</li></ul><h4 id="数据通信基础知识"><a class="markdownIt-Anchor" href="#数据通信基础知识"></a> 数据通信基础知识</h4><p><i>在这一层，则会运用到大学里说的模电数电，结合实际来理解，尝试吸收。</i></p><h5 id="数据通信模型"><a class="markdownIt-Anchor" href="#数据通信模型"></a> 数据通信模型</h5><ol><li><p>PC机将目标数据转换为010101的数据比特流，传给调制解调器。</p></li><li><p>调制解调器将数字比特流转换为模拟信号，传给目的系统。</p></li><li><p>目的系统逆过来解析成原数据就行。</p></li></ol><p><img src="/2021/05/25/计算机网络基础知识（2）- 物理层/%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E7%B3%BB%E7%BB%9F.png" alt=""></p><h5 id="常用术语"><a class="markdownIt-Anchor" href="#常用术语"></a> 常用术语</h5><p>数据（data）——运送消息的实体；<br>信号（signal）——数据的电气或电磁的表现；<br>模拟信号（analogous signal）——代表消息的参数的取值是相连的；</p><p><img src="/2021/05/25/计算机网络基础知识（2）- 物理层/%E6%A8%A1%E6%8B%9F%E4%BF%A1%E5%8F%B7.png" alt=""></p><p>数字信号（digital signal）——代表消息的参数的取值是离散的；</p><p><img src="/2021/05/25/计算机网络基础知识（2）- 物理层/%E6%95%B0%E6%8D%AE%E4%BF%A1%E5%8F%B7.png" alt=""></p><p>码元（code）——在使用时间域（或简称为时域）的波形表示数字信号时，代表不同离散数值的基本波形。</p><p><img src="/2021/05/25/计算机网络基础知识（2）- 物理层/%E7%A0%81%E5%85%83.png" alt=""></p><h5 id="信道概念"><a class="markdownIt-Anchor" href="#信道概念"></a> 信道概念</h5><p>信道——信号传输的通路，信道中自然会叠加上噪声。<br>单项通信（单工通信）——只能有一个方向的通信而没有反方向的交互；<br>双向交替通信（半双工通信）——通信的双方都可以发送信息，但不能双方同时发送（当然也就不能同时接收）；<br>双向同时通信（全双工通信）——通信的双方可以同时发送和接收信息；<br>基带信号（即基本频带信号）——来自信源的信号。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>计算机网络基础知识（1）- 大纲与概述</title>
+      <link href="2021/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89-%20%E5%A4%A7%E7%BA%B2%E4%B8%8E%E6%A6%82%E8%BF%B0/"/>
+      <url>2021/05/24/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86%EF%BC%881%EF%BC%89-%20%E5%A4%A7%E7%BA%B2%E4%B8%8E%E6%A6%82%E8%BF%B0/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：书到用时方恨少，故重拾大学的计算机网络基础知识。<br>（说实话，作为自动化专业的我，都不记得自己有没有学过计算机网络基础知识(｡ì _ í｡)）</p></blockquote><a id="more"></a><p>计算机网络基础知识主要分为以下几个模块进行巩固：</p><ul><li>概述（本篇）</li><li>物理应用层</li><li>数据链路层</li><li>网络层</li><li>传输层</li><li>应用层</li><li>网络安全</li></ul><hr><h4 id="一-互联网发展的三个阶段"><a class="markdownIt-Anchor" href="#一-互联网发展的三个阶段"></a> 一、互联网发展的三个阶段</h4><ol><li>第一阶段：从<strong>单个网络ARPANET</strong>向互联网发展的过程，采用TCP/IP协议</li><li>第二阶段：建成了<strong>三级结构的互联网</strong>，分为主干网、地区网和校园网（或企业网）。逐层向下的结构</li><li>第三阶段：逐渐形成了<strong>多层次ISP<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup>结构的互联网</strong></li></ol><p><img src="/2021/05/24/计算机网络基础知识（1）- 大纲与概述/%E4%B8%89%E5%B1%82ISP%E7%BB%93%E6%9E%84%E4%BA%92%E8%81%94%E7%BD%91.png" alt="三层ISP结构互联网"></p><h4 id="二-计算机网络概述"><a class="markdownIt-Anchor" href="#二-计算机网络概述"></a> 二、计算机网络概述</h4><ol><li>计算机网络定义与分类<br>定义：由一些通用的、可编程的硬件互连而成的，而这些硬件并非专门用来实现某–特定目的(例如，传送数据或视频信号)。这些可编程的硬件能够用来传送多种不同类型的数据，并能支持广泛的和日益增长的应用。</li></ol><p><img src="/2021/05/24/计算机网络基础知识（1）- 大纲与概述/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB.png" alt="计算机网络分类"></p><ol start="2"><li>计算机网络的组成<br>2.1 组成部分：一个完整的计算机网络主要由硬件、软件、协议三大部分组成，缺一不可。<br>2.2 工作方式：计算机网络（这里主要指Internet）可分为边缘部分和核心部分。<br>2.3 功能组成：计算机网络由通信子网和资源子网组成。</li></ol><p><img src="/2021/05/24/计算机网络基础知识（1）- 大纲与概述/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%84%E6%88%90.png" alt="计算机网络组成"></p><ol start="3"><li>网络标准化工作及相关组织</li></ol><ul><li>工作<br>– 法定标准：由权威机构制定的正式的、合法的标准（OSI）<br>– 事实标准：某些公司的产品在竞争中占据了主流，时间长了，这些产品中的协议和技术就成了标准（TCP/IP）</li><li>组织<br>– 国际标准化组织ISO（OSI参考模型、HDLC协议）<br>– 国际电信联盟ITU（制定通信规则）<br>– 国际电气电子工程师协会IEEE（学术机构、IEEE802系列标准、5G）<br>– Internet工程任务组IETF（负责因特网相关标准的制定RFC XXXX）</li></ul><h4 id="三-计算机网络体系结构"><a class="markdownIt-Anchor" href="#三-计算机网络体系结构"></a> 三、计算机网络体系结构</h4><p><u>分层结构，计算机网络的<strong>各层及其协议</strong>的集合称为网络的体系结构</u></p><p>Q1：为什么使用分层？<br>A：为了降低协议涉及和调试过程的复杂性，也为了便于对网络进行研究、实现和维护，促进标准化工作，通常对计算机网络的体系结构以分层的方式进行建模。</p><p>Q2：分层的优点是什么？<br>1 各层之间是独立的<br>2 灵活性好<br>3 当某层提供的服务不再需要时，甚至可以将这层取消<br>4 结构上可分割开。各层都可以采用最合适的技术来实现<br>5 易于实现和维护<br>6 能促进标准化工作</p><p>Q3：分层的缺点是什么？<br>A：部分功能在不同层次中重复出现，因而产生额外的开销</p><p>Q4：分层结构是怎样的？<br><img src="/2021/05/24/计算机网络基础知识（1）- 大纲与概述/%E8%AE%A1%E7%AE%97%E6%9C%BA%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84.png" alt="计算机体系结构"></p><p>Q5：各层的主要协议是什么？<br><img src="/2021/05/24/计算机网络基础知识（1）- 大纲与概述/%E5%B1%82%E6%AC%A1%E7%BB%93%E6%9E%84%E4%B8%8E%E5%90%84%E5%B1%82%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8D%8F%E8%AE%AE.png" alt="层次结构与各层的主要协议"></p><h4 id="四-常用的网络设备"><a class="markdownIt-Anchor" href="#四-常用的网络设备"></a> 四、常用的网络设备</h4><ol><li>传输媒体</li><li>中继器</li><li>集线器</li><li>交换机</li><li>路由器</li><li>防火墙</li></ol><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>ISP可以从 互联网管理机构 申请到很多 IP地址（主机必须有IP地址才能上网），同时拥有通信线路（大ISP自己建造通信线路，小ISP则向电信公司租用通信线路）以及路由器等 联网设备 。<br>任何机构或个人只要向 某个ISP 缴纳规定的费用，就能从该ISP获得所需 IP地址的使用权，并通过该ISP接入互联网。<br>IP地址管理机构不会把一个单个IP地址分配给单个用户，而是把一批IP地址有偿租赁给经审查合格的ISP。互联网其实是全世界无数大大小小的ISP所共同拥有的 <a href="#fnref1" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content>
+      
+      
+      <categories>
+          
+          <category> 计算机网络 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 网络基础 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>BIGO测试工程师社招面试</title>
+      <link href="2021/05/17/BIGO%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/"/>
+      <url>2021/05/17/BIGO%E6%B5%8B%E8%AF%95%E5%B7%A5%E7%A8%8B%E5%B8%88%E7%A4%BE%E6%8B%9B%E9%9D%A2%E8%AF%95/</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>前言：2021年初，基于自身发展考虑，想要换个平台。<br>因缘际会，朋友内推了我去BIGO，故开展了我参与社招的第一步。</p></blockquote><a id="more"></a><h4 id="hr一面5min"><a class="markdownIt-Anchor" href="#hr一面5min"></a> hr一面（5min）</h4><ul><li>跳槽原因</li><li>现薪资，期望薪资</li><li>是否单身</li><li>地点，时间是否可接受</li></ul><h4 id="技术一面40min"><a class="markdownIt-Anchor" href="#技术一面40min"></a> 技术一面（40min）</h4><ul><li>ANR原因与崩溃原因</li><li>微信语音通话用例设计</li><li>monkey的问题复现</li><li>monkey的参数配比</li><li>提出过的研发流程改善</li><li>内外评审是如何评审的</li></ul><h4 id="技术二面1h"><a class="markdownIt-Anchor" href="#技术二面1h"></a> 技术二面（1h）</h4><ul><li>当前负责什么、面临什么难点、未来规划</li><li>对于接口的理解、接口用例的设计</li><li>说说项目中性能需求-进行-分析的全流程</li><li>性能问题可能因为什么</li><li>慢查询有哪些</li><li>说说接触过的一个比较难的测试需求，以及你的处理</li><li>做过什么流程改善、觉得难点在哪</li><li>python写过什么脚本、具体帮助了你什么</li></ul><h4 id="技术三面1h"><a class="markdownIt-Anchor" href="#技术三面1h"></a> 技术三面（1h）</h4><ul><li>为什么换工作</li><li>4年的个人成长曲线是怎样的</li><li>现在的瓶颈是什么</li><li>现在的诉求是什么</li><li>如何做到管理与测试的平衡</li><li>入职后，如何服众</li><li>微信语音通话功能重构/测试用例设计</li><li>关系型数据库与非关系型数据库的区别</li><li>索引的作用</li><li>算法是否了解</li><li>python的掌握程度</li><li>从哪些渠道进行学习</li><li>TCP/IP的层级</li><li>TCP与UDP的区别</li></ul><h4 id="hr终面30min"><a class="markdownIt-Anchor" href="#hr终面30min"></a> hr终面（30min）</h4><ul><li>是否校招</li><li>为什么换工作</li><li>什么系统/团队多少人</li><li>期望进入的团队和平台</li><li>是否在面其他公司</li><li>项目的质量管控怎么做</li><li>多方意见不统一时怎么办</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> 面筋 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 面筋 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>博客诞生</title>
+      <link href="2017/06/08/%E5%8D%9A%E5%AE%A2%E8%AF%9E%E7%94%9F/"/>
+      <url>2017/06/08/%E5%8D%9A%E5%AE%A2%E8%AF%9E%E7%94%9F/</url>
+      
+        <content type="html"><![CDATA[<p>2017年6月8日，它诞生啦～<br>此刻正在上班，短小一篇，仅此纪念。</p><a id="more"></a><p>2021年5月17日，它重生啦~<br>需要再次维护起来，督促自己好好更新文章！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 感想 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 随便想想 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+  
+  
+</search>
